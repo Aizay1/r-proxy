@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Analyzer</h1>
+        <textarea id="input-text" placeholder="Enter your text here..."></textarea>
+        <button onclick="analyzeText()">Submit</button>
+    </div>
+
+    <script>
+        // JavaScript Functionality
+        function analyzeText() {
+            // Get the text from the textarea
+            const text = document.getElementById('input-text').value;
+
+            // Calculate total characters
+            const totalCharacters = text.length;
+
+            // Calculate total words (split by whitespace and filter out empty strings)
+            const totalWords = text.split(/\s+/).filter(word => word.length > 0).length;
+
+            // Calculate total lines (split by newline characters)
+            const totalLines = text.split('\n').filter(line => line.length > 0).length;
+
+            // Display the results in an alert box
+            alert(
+                `Text Analysis Results:\n\n` +
+                `Total Characters: ${totalCharacters}\n` +
+                `Total Words: ${totalWords}\n` +
+                `Total Lines: ${totalLines}`
+            );
+        }
+    </script>
+</body>
+</html>

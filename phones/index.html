@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Product Search</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .no-results {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phone Product Search</h1>
+        <input type="text" id="search-input" placeholder="Search for a phone...">
+        <ul id="results-list"></ul>
+    </div>
+
+    <script>
+        // Sample phone product list
+        const products = [
+            "Tecno Spark 10 Pro",
+            "Tecno Camon 20",
+            "Tecno Phantom X2",
+            "Infinix Zero 30",
+            "Infinix Hot 30",
+            "Infinix Note 12",
+            "iTel Vision 5",
+            "iTel A70",
+            "iTel P40",
+            "Samsung Galaxy A54",
+            "Samsung Galaxy S23 Ultra",
+            "iPhone 15 Pro Max",
+            "iPhone 14",
+            "Google Pixel 8 Pro",
+            "Xiaomi Redmi Note 12",
+            "Xiaomi Poco X5 Pro",
+            "Oppo Reno 10",
+            "Oppo A98",
+            "Vivo V29",
+            "Vivo Y27",
+            "Dangote X1",
+            "Dangote Pro 5G",
+            "Dangote Lite",
+            "Dangote Max Ultra"
+        ];
+
+        // Get references to the input and results list
+        const searchInput = document.getElementById('search-input');
+        const resultsList = document.getElementById('results-list');
+
+        // Function to filter and display matching products
+        function updateSearchResults() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.toLowerCase().includes(searchTerm)
+            );
+
+            // Clear the results list
+            resultsList.innerHTML = '';
+
+            // Display matching products or a "no results" message
+            if (filteredProducts.length > 0) {
+                filteredProducts.forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = product;
+                    resultsList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = "No matching products found.";
+                li.classList.add('no-results');
+                resultsList.appendChild(li);
+            }
+        }
+
+        // Add an event listener to the input field
+        searchInput.addEventListener('input', updateSearchResults);
+
+        // Initialize the results list with all products
+        updateSearchResults();
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number to Words Converter</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number to Words Converter</h1>
+        <input type="text" id="input-box" placeholder="Enter a number (0-999)">
+        <button onclick="getValue()">Convert</button>
+        <p id="output-box"></p>
+    </div>
+
+    <script>
+        // JavaScript Functionality
+        const digit = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+        const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+        const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+
+        // Function to convert number to words
+        function convertToWords(num) {
+            if (num < 10) return digit[num];
+            if (num < 20) return teens[num - 10];
+            if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? " " + digit[num % 10] : "");
+            return digit[Math.floor(num / 100)] + " Hundred" + (num % 100 !== 0 ? " " + convertToWords(num % 100) : "");
+        }
+
+        // Function to get value from input
+        function getValue() {
+            const inputBox = document.getElementById('input-box');
+            const outputBox = document.getElementById('output-box');
+            const input = parseInt(inputBox.value);
+
+            // Input validation
+            if (isNaN(input)) {
+                outputBox.innerHTML = "Invalid input. Please enter a number.";
+                outputBox.style.color = 'red';
+            } else if (input < 0 || input > 999) {
+                outputBox.innerHTML = "Out of range. Please enter a number between 0 and 999.";
+                outputBox.style.color = 'red';
+            } else {
+                outputBox.style.color = 'black';
+                outputBox.innerHTML = convertToWords(input);
+            }
+        }
+    </script>
+</body>
+</html>

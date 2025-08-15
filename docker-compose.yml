@@ -1,0 +1,34 @@
+services:
+  reverse-proxy:
+    image: yourdockerhubusername/reverse-proxy:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - country
+      - numbertoword
+      - phones
+      - textanalyzer
+      - url
+
+  country:
+    image: yourdockerhubusername/country:latest
+    build: ./country
+
+  numbertoword:
+    image: yourdockerhubusername/numbertoword:latest
+    build: ./numbertoword
+
+  phones:
+    image: yourdockerhubusername/phones:latest
+    build: ./phones
+
+  url:
+    image: yourdockerhubusername/url:latest
+    build: ./url
+
+  textanalyzer:
+    image: yourdockerhubusername/textanalyzer:latest
+    build: ./textanalyzer

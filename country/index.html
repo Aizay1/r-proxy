@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Capital Finder</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #capital-display {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Country Capital Finder</h1>
+        <select id="country-dropdown" onchange="displayCapital()">
+            <option value="" disabled selected>Select a country</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Somalia">Somalia</option>
+            <option value="Djibouti">Djibouti</option>
+        </select>
+        <div id="capital-display"></div>
+    </div>
+
+    <script>
+        // JavaScript Functionality
+        function displayCapital() {
+            // Get the selected country
+            const dropdown = document.getElementById('country-dropdown');
+            const selectedCountry = dropdown.value;
+
+            // Map countries to their capitals
+            const capitals = {
+                "Ethiopia": "Addis Ababa",
+                "Sudan": "Khartoum",
+                "Kenya": "Nairobi",
+                "Somalia": "Mogadishu",
+                "Djibouti": "Djibouti City"
+            };
+
+            // Get the capital display element
+            const capitalDisplay = document.getElementById('capital-display');
+
+            // Display the capital or a default message
+            if (selectedCountry && capitals[selectedCountry]) {
+                capitalDisplay.textContent = `Capital: ${capitals[selectedCountry]}`;
+            } else {
+                capitalDisplay.textContent = "Please select a country.";
+            }
+        }
+    </script>
+</body>
+</html>
